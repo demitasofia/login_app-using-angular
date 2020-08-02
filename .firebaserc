@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fblogin-app": {
+      "hosting": {
+        "Abide-login": [
+          "fblogin-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fblogin-app"
+  }
+}
