@@ -5,7 +5,10 @@ import { auth } from 'firebase/app';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+//import {AngularFirestoreDocument} from '@angular/fire/firestore';
 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -20,26 +23,67 @@ import { switchMap } from 'rxjs/operators';
  
 })
 export class AppComponent implements OnInit {
+
+  //loginForm: FormGroup;
+  //errorMessage: string = '';
+
   email:string;
   password:string;
   returnedArray = [];
   loggedUser: string;
   $user: Observable<User>
   userEmail: string;
-
+  //public : AngularFirestoreDocument<User>;
 
   constructor(public auth: AngularFireAuth,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private db: AngularFirestore,
+   // private fb: FormBuilder,
+    //private router: Router,
     ){this.$user = this.auth.authState.pipe(
       switchMap(user => {
         if(user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-        } else {
+          return this.afs.doc<User>(`user/${user.uid}`).valueChanges();
+                } 
+        else {
           return of(null);
-        }
-      })
-    );}
-         
+             }
+                        }));
+                       // this.createForm();
+  
+  }
+
+  /*createForm() {
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required ],
+      password: ['',Validators.required]
+    });
+  }
+ 
+  
+  tryLogin(value){
+    this.auth.doLogin(value)
+    .then(res => {
+      this.router.navigate(['/member']);
+    }, err => {
+      console.log(err);
+      this.errorMessage = err.message;
+    })
+  }
+}*/
+
+
+
+
+
+  signin() {
+       this.auth.signInWithPopup(new auth.GoogleAuthProvider())
+     
+   }
+   // signout() {
+     //this.auth.signOut();
+     
+     //}  
      
   
   async login() {
@@ -51,7 +95,7 @@ export class AppComponent implements OnInit {
   async logout() {
     await this.auth.signOut();
     
-    //  login panna hello kela logout
+    
     }
 
  signup(){
@@ -60,7 +104,7 @@ export class AppComponent implements OnInit {
    
  }
  ngOnInit(){
-  this.db.collection('users').snapshotChanges().subscribe(
+  this.db.collection('user').snapshotChanges().subscribe(
     serviceItems => {
       this.returnedArray = [];
       serviceItems.forEach(a=>{
@@ -71,17 +115,9 @@ export class AppComponent implements OnInit {
     }
   )
 
-  this.loggedUser = this.auth.userEmail;
+  this.loggedUser = this.userEmail;
 }
 
-getUserEmail(){
-  return this.userEmail;
-}
-
-getCurrentUser() {
-  console.log(this.auth.getUserEmail());
-  
-}
 
 /* var user = firebase.auth().currentUser;
 
@@ -99,15 +135,5 @@ export interface User {
   uid: string;
   email: string;
 }
-
-
-
-
-
-
-  
-  
-    
- 
 
 
