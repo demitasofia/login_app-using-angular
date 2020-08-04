@@ -1,4 +1,3 @@
-
 .form-3 {
   font-family: 'Ubuntu', 'Lato', sans-serif;
   font-weight: 400;
@@ -108,7 +107,7 @@
 }
 .form-3 input[type=submit] {
     /* Width and position */
-    width: 100%;
+    width: 400px;
     padding: 8px 5px;
   
     /* Styles */
@@ -138,6 +137,7 @@
     box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
     border-color: #000; /* Fallback */
     border-color: rgba(0,0,0,0.9);
+    
 }
 
 .no-boxshadow .form-3 input[type=submit]:hover {
@@ -283,8 +283,8 @@
     
 
     .display{
-      width: 400px;
-      height:200px;
+      width: 440px;
+      height:450px;
       background-color: rgb(241, 107, 18);
       position: relative;
       animation-name: example;
@@ -298,7 +298,7 @@
     
     @keyframes example {
       0%   {background-color:rgb(238, 129, 27); left:0px; top:0px;}
-      25%  {background-color:rgb(255, 134, 229); left:700px; top:0px;}
+      25%  {background-color:rgb(134, 156, 255); left:700px; top:0px;}
       50%  {background-color:rgb(89, 199, 226); left:400px; top:200px;}
       75%  {background-color:rgb(82, 192, 82); left:0px; top:200px;}
       100% {background-color:rgb(130, 107, 190); left:0px; top:0px;}
