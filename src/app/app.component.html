@@ -16,6 +16,8 @@
   <div class="card highlight-card card-small">
      <div class="d-flex justify-content-end social_icon">
          <button (click)="login()"  class="fa fa-facebook" ></button>
+         <button (click)="signin()"  class="fa fa-google" ></button>
+
      </div>
   </div>
 <form class="form-3">
@@ -37,19 +39,22 @@
 </ng-template>
 </div>
 
-<!--<div *ngIf="auth.user | async as user; else showLogin"  class="display">-->
-  <div *ngIf="auth.$user | async as user">
+<div *ngIf="auth.user | async as user; else showLogin"  class="display">
+   <br>
   <h1>Hello {{ user.displayName }}!</h1>
-  <p>you are successfully logged in</p>
+
   <p>Click logout to exit</p>
   <button (click)="logout()" class="btn" >Logout</button>
-  <button class="btn btn-primary" (click)="getUserEmail()">User Details</button>
+  <h3>authenticated user</h3>
   <div *ngFor="let item of returnedArray">
-    {{ user.email }}
-  </div>
+    <div>
+   {{ item.email }}</div>
+</div>
+  <div><h4>current user: {{user.email}} <br> {{ user.displayName }} </h4>
+    </div>
   </div>
  
-
+  
 
     <!--ul>
       <li class="text" *ngFor="let item of items | async">
