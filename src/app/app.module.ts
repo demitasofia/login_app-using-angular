@@ -6,8 +6,10 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { MemberComponent } from './member/member.component';
-import {AngularFirestoreDocument} from '@angular/fire/firestore';
+//import {AngularFirestoreDocument} from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
+import { Router} from '@angular/router';
+
 
 @NgModule({
   imports: [
@@ -16,10 +18,13 @@ import { AppRoutingModule } from './app-routing.module';
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     AppRoutingModule,
-    AngularFirestoreDocument
+    Router,
+    
+    //AngularFirestoreDocument
     
   ],
   declarations: [ AppComponent, MemberComponent,  ],
   bootstrap: [ AppComponent ]
 })
+
 export class AppModule {}
